@@ -2,10 +2,10 @@ FROM python:3-alpine
 
 WORKDIR "/app"
 
+COPY ./requirements.txt .
+
+RUN pip install -r requirements.txt
+
 COPY . .
-
-RUN pip install flask
-
-RUN export FLASK_APP=app.py
 
 CMD ["python", "-m", "flask", "run", "--host=0.0.0.0"]

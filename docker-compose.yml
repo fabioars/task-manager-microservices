@@ -7,7 +7,6 @@ services:
     restart: always
     build:
       context: ./nginx
-
     ports:
       - '4000:80'
 
@@ -16,6 +15,10 @@ services:
       context: ./board
     volumes:
       - ./board:/app
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_DEBUG=1
+      - FLASK_ENV=development
 
   frontend:
     build:
@@ -29,10 +32,18 @@ services:
       context: ./project
     volumes:
       - ./project:/app
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_DEBUG=1
+      - FLASK_ENV=development
 
   task:
     build:
       context: ./task
     volumes:
       - ./task:/app
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_DEBUG=1
+      - FLASK_ENV=development
 
