@@ -1,0 +1,38 @@
+version: '3'
+services:
+  db:
+    image: 'mongo:latest'
+
+  server:
+    restart: always
+    build:
+      context: ./nginx
+
+    ports:
+      - '4000:80'
+
+  board:
+    build:
+      context: ./board
+    volumes:
+      - ./board:/app
+
+  frontend:
+    build:
+      context: ./frontend
+    volumes:
+      - /app/node_modules
+      - ./frontend:/app
+
+  project:
+    build:
+      context: ./project
+    volumes:
+      - ./project:/app
+
+  task:
+    build:
+      context: ./task
+    volumes:
+      - ./task:/app
+
