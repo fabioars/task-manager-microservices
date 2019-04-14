@@ -14,11 +14,8 @@ services:
     build:
       context: ./board
     volumes:
+      - /app/node_modules
       - ./board:/app
-    environment:
-      - FLASK_APP=app.py
-      - FLASK_DEBUG=1
-      - FLASK_ENV=development
 
   frontend:
     build:
@@ -31,19 +28,13 @@ services:
     build:
       context: ./project
     volumes:
+      - /app/node_modules
       - ./project:/app
-    environment:
-      - FLASK_APP=app.py
-      - FLASK_DEBUG=1
-      - FLASK_ENV=development
 
   task:
     build:
       context: ./task
     volumes:
+      - /app/node_modules
       - ./task:/app
-    environment:
-      - FLASK_APP=app.py
-      - FLASK_DEBUG=1
-      - FLASK_ENV=development
 

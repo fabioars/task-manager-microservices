@@ -1,11 +1,10 @@
-FROM python:3-alpine
+from node:alpine
 
 WORKDIR "/app"
 
-COPY ./requirements.txt .
-
-RUN pip install -r requirements.txt
+COPY package.json .
+RUN npm install
 
 COPY . .
 
-CMD ["python", "-m", "flask", "run", "--host=0.0.0.0"]
+CMD [ "npm", "run", "dev" ]
